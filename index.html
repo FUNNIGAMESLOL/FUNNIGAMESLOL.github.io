@@ -1,26 +1,40 @@
 <HTML>
     <head>
-        <title>Clicker Game</title>
+        <title>MonClicker</title>
 	</head>
 	
 	<body>
 		<p>MonCoins: <span id="MC">0</span></p>
-		<img src="images/monca1.jpg" height="256px" width="216px" onclick="addToMC(1)">
+		<img src="images/monca1.jpg" height="256px" width="216px" onclick="addToMC(clicks)">
 		
-		<button onClick="buyCursor()">Cursor <span id="cursorcost">15</span> -- <span id="cursors">0</span></button>
-
+		<button onClick="buyClick()">MonClick <span id="clickcost">15</span> -- <span id="clicks">1</span></button>
+		<button onClick="buyCursor()">MonCursor <span id="cursorcost">15</span> -- <span id="cursors">0</span></button>
 		
 		<script>
 			var MC=0;
 			
 			var cursorCost = 15;
 			var cursors = 0;
+			var clickCost = 15;
+			var clicks = 1;
 			
 			function buyCursor() {
 				if (MC >= cursorCost) {
 					MC = MC - cursorCost;
 					cursors = cursors + 1;
 					cursorCost = Math.round(cursorCost * 1.15);
+					
+					document.getElementById("MC").innerHTML = MC;
+					document.getElementById("cursorcost").innerHTML = cursorCost;
+					document.getElementById("cursors").innerHTML = cursors;
+				}
+			}
+			
+			function buyClick() {
+				if (MC >= clickCost) {
+					MC = MC - clickCost;
+					clicks = clicks + 1;
+					clickCost = Math.round(clickCost * 1.15);
 					
 					document.getElementById("MC").innerHTML = MC;
 					document.getElementById("cursorcost").innerHTML = cursorCost;
