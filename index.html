@@ -5,7 +5,7 @@
 	
 	<body>
 		<p>MonCoins: <span id="MC">0</span></p>
-		<img src="images/monca1.jpg" height="256px" width="216px" onclick="addToMC(clicks)">
+		<img src="images/monca1.jpg" height="512px" width="432px" onclick="addToMC(clicks)">
 		
 		<button onClick="buyClick()">MonClick <span id="clickcost">15</span> -- <span id="clicks">1</span></button>
 		<button onClick="buyCursor()">MonCursor <span id="cursorcost">15</span> -- <span id="cursors">0</span></button>
@@ -28,7 +28,7 @@
 					document.getElementById("cursorcost").innerHTML = cursorCost;
 					document.getElementById("cursors").innerHTML = cursors;
 				}
-			}
+			};
 			
 			function buyClick() {
 				if (MC >= clickCost) {
@@ -37,15 +37,15 @@
 					clickCost = Math.round(clickCost * 1.15);
 					
 					document.getElementById("MC").innerHTML = MC;
-					document.getElementById("cursorcost").innerHTML = cursorCost;
-					document.getElementById("cursors").innerHTML = cursors;
+					document.getElementById("clickcost").innerHTML = clickCost;
+					document.getElementById("clicks").innerHTML = clicks;
 				}
-			}
+			};
 			
 			function addToMC(amount) {
 			MC = MC + amount;
 			document.getElementById("MC").innerHTML = MC;
-			}
+			};
 			
 			setInterval(function() {
 				MC = MC + cursors;
