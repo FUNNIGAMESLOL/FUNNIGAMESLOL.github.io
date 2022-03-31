@@ -193,7 +193,7 @@
 			
 			function loadGame() {
 				var savedGame = JSON.parse(localStorage.getItem("gameSave"));
-				if (typeof savedGame.score !== "undefined") score = savedGame.score;
+				if (typeof savedGame.MC !== "undefined") MC = savedGame.MC;
 				if (typeof savedGame.clickingPower !== "undefined") clickingPower = savedGame.clickingPower;
 				if (typeof savedGame.clickCost !== "undefined") clickCost = savedGame.clickCost;
 				if (typeof savedGame.clicks !== "undefined") clicks = savedGame.clicks;
