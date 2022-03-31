@@ -181,6 +181,23 @@
 				MCPerSecond = cursors + cleaners * 5;
 				document.getElementById("MCPerSecond").innerHTML = MCPerSecond;
 			};
+			
+			function loadGame() {
+				var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+				if (typeof savedGame.score !== "undefined") score = savedGame.score;
+				if (typeof savedGame.clickingPower !== "undefined") clickingPower = savedGame.clickingPower;
+				if (typeof savedGame.clickCost !== "undefined") clickCost = savedGame.clickCost;
+				if (typeof savedGame.clicks !== "undefined") clicks = savedGame.clicks;
+				if (typeof savedGame.cursorCost !== "undefined") cursorCost = savedGame.cursorCost;
+				if (typeof savedGame.cursors !== "undefined") cursors = savedGame.cursors;
+				if (typeof savedGame.cleanerCost !== "undefined") cleanerCost = savedGame.cleanerCost;
+				if (typeof savedGame.cleaners !== "undefined") cleaners = savedGame.cleaners;	
+			}
+			
+			window.onload = function() {
+				loadGame();
+			};
+			
 			function saveGame() {
 				var gameSave = {
 					MC: MC,
@@ -193,7 +210,7 @@
 					cleaners: cleaners
 				};
 				localStorage.setItem("gameSave", JSON.stringify(gameSave));
-			};
+			}
 			
 			
 			setInterval(function() {
