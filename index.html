@@ -83,8 +83,9 @@
 				</div>
 				<br>
 				<div class="clickerContainer">
-					<img src="images/monca1.jpg" height="512px" width="432px" onclick="addToMC(clickingPower)">
+					<img src="images/monca1.jpg" height="512px" width="432px" onclick="addToMc(clickingPower)">
 				</div>
+				<button onclick="saveGame();">Save Game</button>
 			</center>
 		</div>
 		
@@ -125,7 +126,7 @@
 			var MC = 0;
 			var clickingPower = 1;
 			
-var clickCost = 15;
+			var clickCost = 15;
 			var clicks = 1;
 			var cursorCost = 15;
 			var cursors = 0;
@@ -171,7 +172,7 @@ var clickCost = 15;
 				}
 			};
 			
-			function addToMC(amount) {
+			function addToMc(amount) {
 			MC = MC + amount;
 			document.getElementById("MC").innerHTML = MC;
 			}
@@ -181,11 +182,29 @@ var clickCost = 15;
 				document.getElementById("MCPerSecond").innerHTML = MCPerSecond;
 			}
 			
+			function saveGame() {
+				var gameSave = {
+					MC: MC
+					clickingPower: clickingPower,
+					clickCost: clickCost,
+					clicks: clicks,
+					cursorCost: cursorCost,
+					cursors: cursors,
+					cleanerCost: cleanerCost,
+					cleaners: cleaners
+				};
+				localStorage.setItem("gameSave", JSON.stringify(gameSave));
+			}
+			
 			setInterval(function() {
 				MC = MC + cursors + cleaners * 5;
 				document.getElementById("MC").innerHTML = MC;
 				document.title = "MonClicker - " + MC + " MC";
 			}, 1000); //1000ms = 1 second
+			
+			setInterval(function() {
+				saveGame();
+			}, 30000);
 			
 				
 		</script>
