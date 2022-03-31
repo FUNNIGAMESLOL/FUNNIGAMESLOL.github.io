@@ -196,6 +196,16 @@
 			
 			window.onload = function() {
 				loadGame();
+				updateScorePerSecond();
+				document.getElementById("MC").innerHTML = MC;
+				document.getElementById("clickcost").innerHTML = clickCost;
+				document.getElementById("clicks").innerHTML = clicks;
+				document.getElementById("MC").innerHTML = MC;
+				document.getElementById("cursorcost").innerHTML = cursorCost;
+				document.getElementById("cursors").innerHTML = cursors;
+				document.getElementById("MC").innerHTML = MC;
+				document.getElementById("cleanercost").innerHTML = cleanerCost;
+				document.getElementById("cleaners").innerHTML = cleaners;
 			};
 			
 			function saveGame() {
