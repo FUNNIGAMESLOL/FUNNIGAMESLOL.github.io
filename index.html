@@ -1,19 +1,119 @@
 <HTML>
     <head>
         <title>MonClicker</title>
+		
+		<style>
+			.sectionLeft {
+				float: left;
+				width: 80%;
+			}
+			
+			.sectionRight {
+				float: right;
+				width: 20%;
+			}
+			
+			.mcContainer {
+				background-color: rgb(238, 238, 238);
+				width: 50%;
+				padding: 10px;
+				border-radius: 25px;
+				font-size: 25px;
+				font-weight: bold;
+			}
+			
+			.clickerContainer img {
+				position: relative;
+				transition: all .01s ease-in-out;
+			}
+			
+			.clickerContainer img:hover { transform: scale(1.02); }
+			.clickerContainer img:active {transform: scale(1.00); }
+			
+			.shopButton {
+				background-color: #EEEEEE;
+				transition: all .2s ease-in-out;
+				border-radius: 25px;
+				width: 100%;
+				margin: 10px 0px 10px 0px;
+			}
+			
+			.shopButton:hover {
+				background-color: #DDDDDD	;
+				transition: all .2s ease-in-out;
+			}
+			
+			.shopButton #image {
+				width: 25%;
+			}
+			
+			.shopButton img {
+				height: 64px;
+				width: 64px;
+			}
+			
+			.shopButton #nameAndCost p {
+				margin: 0px;
+				width: 60%;
+			}
+			
+			.shopButton #nameAndCost p:first-of-type {
+				font-size: 24px;
+			}
+			
+			.shopButton #amount {
+				font-size: 48px;
+				color: #595959;
+				font-family: roboto;
+				width: 15%;
+			}
+			
+			
+		</style>
 	</head>
 	
-	<body>
-		<div style="text-align: center; font-size: 25px;"><h1>MonClicker</h1></div>
-		<div style="text-align: center; font-size: 25px;"><p>MonCoins: <span id="MC">0</span></p></div>
-		<div style="text-align: center;"><img src="images/monca1.jpg" height="512px" width="432px" onclick="addToMC(clicks)"></div>
+	<body>		
 		
-		<div style="text-align: center;"><button type="button" class="block" onClick="buyClick()">MonClick <span id="clickcost">15</span> -- <span id="clicks">1</span></button></div>
-		<div style="text-align: center;"><button type="button" class="block" onClick="buyCursor()">MonCursor <span id="cursorcost">15</span> -- <span id="cursors">0</span></button></div>
 		
-
+		<div class="sectionLeft">
+			<center>
+				<div class="mcContainer">
+					<span id="MC">0</span> MonCoins<br>
+					<span id="MCPerSecond">0</span> MonCoins Per Second
+				</div>
+				<br>
+				<div class="clickerContainer">
+					<img src="images/monca1.jpg" height="512px" width="432px" onclick="addToMC(clickingPower)">
+				</div>
+			</center>
+		</div>
+		
+		<div class="sectionRight">
+			<table class="shopButton" onclick="buyClick()">
+				<tr>
+					<td id="image"><img src="images/monclick.png"></td>
+					<td id="nameAndCost">
+						<p>MonCursor</p>
+						<p><span id="clickcost">15</span> MonCoins</td>
+					</td>
+					<td id="amount"><span id="clicks">0</span></td>
+				</tr>
+			</table>
+						<table class="shopButton" onclick="buyCursor()">
+				<tr>
+					<td id="image"><img src="images/moncursor.png"></td>
+					<td id="nameAndCost">
+						<p>MonCursor</p>
+						<p><span id="cursorcost">15</span> MonCoins</td>
+					</td>
+					<td id="amount"><span id="cursors">0</span></td>
+				</tr>
+			</table>
+		</div>
+		
 		<script>
-			var MC=0;
+			var MC = 0;
+			var clickingPower = 1;
 			
 			var cursorCost = 15;
 			var cursors = 0;
@@ -29,30 +129,41 @@
 					document.getElementById("MC").innerHTML = MC;
 					document.getElementById("cursorcost").innerHTML = cursorCost;
 					document.getElementById("cursors").innerHTML = cursors;
-				}
+					updateMCPerSecond();
+				}	
 			};
 			
 			function buyClick() {
 				if (MC >= clickCost) {
 					MC = MC - clickCost;
 					clicks = clicks + 1;
+					clickingPower = clickingPower + 1
 					clickCost = Math.round(clickCost * 1.15);
 					
 					document.getElementById("MC").innerHTML = MC;
 					document.getElementById("clickcost").innerHTML = clickCost;
 					document.getElementById("clicks").innerHTML = clicks;
+					updateMCPerSecond();
 				}
 			};
 			
 			function addToMC(amount) {
 			MC = MC + amount;
 			document.getElementById("MC").innerHTML = MC;
-			};
+			}
+				
+			function updateMCPerSecond() {
+				MCPerSecond = cursors
+				document.getElementById("MCPerSecond").innerHTML = MCPerSecond;
+			}
 			
 			setInterval(function() {
 				MC = MC + cursors;
 				document.getElementById("MC").innerHTML = MC;
+				document.title = "MonClicker - " + MC + " MC";
 			}, 1000); //1000ms = 1 second
+			
+				
 		</script>
 		
 	</body>
