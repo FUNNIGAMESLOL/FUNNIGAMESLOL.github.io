@@ -109,16 +109,28 @@
 					<td id="amount"><span id="cursors">0</span></td>
 				</tr>
 			</table>
+			<table class="shopButton" onclick="buyCleaner()">
+				<tr>
+					<td id="image"><img src="images/moncleaner.png"></td>
+					<td id="nameAndCost">
+						<p>MonCleaner</p>
+						<p><span id="cleanercost">100</span> MonCoins</td>
+					</td>
+					<td id="amount"><span id="cleaners">0</span></td>
+				</tr>
+			</table>
 		</div>
 		
 		<script>
 			var MC = 0;
 			var clickingPower = 1;
 			
+var clickCost = 15;
+			var clicks = 1;
 			var cursorCost = 15;
 			var cursors = 0;
-			var clickCost = 15;
-			var clicks = 1;
+			var cleanerCost = 100
+			var cleaners = 0
 			
 			function buyCursor() {
 				if (MC >= cursorCost) {
@@ -146,6 +158,18 @@
 					updateMCPerSecond();
 				}
 			};
+			function buyCleaner() {
+				if (MC >= cleanerCost) {
+					MC = MC - cleanerCost;
+					cleaners = cleaners + 1;
+					cleanerCost = Math.round(cleanerCost * 1.50);
+					
+					document.getElementById("MC").innerHTML = MC;
+					document.getElementById("cleanercost").innerHTML = cleanerCost;
+					document.getElementById("cleaners").innerHTML = cleaners;
+					updateMCPerSecond();
+				}
+			};
 			
 			function addToMC(amount) {
 			MC = MC + amount;
@@ -153,12 +177,12 @@
 			}
 				
 			function updateMCPerSecond() {
-				MCPerSecond = cursors
+				MCPerSecond = cursors + cleaners * 5;
 				document.getElementById("MCPerSecond").innerHTML = MCPerSecond;
 			}
 			
 			setInterval(function() {
-				MC = MC + cursors;
+				MC = MC + cursors + cleaners * 5;
 				document.getElementById("MC").innerHTML = MC;
 				document.title = "MonClicker - " + MC + " MC";
 			}, 1000); //1000ms = 1 second
