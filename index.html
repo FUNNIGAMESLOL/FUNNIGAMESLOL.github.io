@@ -135,23 +135,25 @@
 			var MC = 0;
 			var clickingPower = 1;
 			
-			var clickCost = -1;
+			var clickCost = 15;
 			var clicks = 1;
-			var cursorCost = -1;
+			var cursorCost = 15;
 			var cursors = 0;
-			var cleanerCost = -1;
-			var cleaners = 0;
+			var cleanerCost = 100
+			var cleaners = 0
+			
+			document.body.onkeyup = function(e){
+			if(e.key == 's'){
+				saveGame();
+				};
+			};
 			
 			document.body.onkeyup = function(e){
 			if(e.key == ' '){
 				addToMC(clickingPower);
 				};
 			};
-			document.body.onkeyup = function(e){
-			if(e.key == 's'){
-				saveGame();
-				};
-			};
+			
 			function buyCursor() {
 				if (MC >= cursorCost) {
 					MC = MC - cursorCost;
@@ -202,15 +204,6 @@
 			};
 			
 			function loadGame() {
-				var MC = 0;
-				var clickingPower = 1;
-			
-				var clickCost = -1;
-				var clicks = 1;
-				var cursorCost = -1;
-				var cursors = 0;
-				var cleanerCost = -1;
-				var cleaners = 0;
 				var savedGame = JSON.parse(localStorage.getItem("gameSave"));
 				if (typeof savedGame.MC !== "undefined") MC = savedGame.MC;
 				if (typeof savedGame.clickingPower !== "undefined") clickingPower = savedGame.clickingPower;
