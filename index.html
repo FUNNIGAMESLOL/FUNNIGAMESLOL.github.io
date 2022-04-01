@@ -142,6 +142,12 @@
 			var cleanerCost = 100
 			var cleaners = 0
 			
+			document.body.onkeyup = function(e){
+			if(e.key == ' '){
+				addToMC(clickingPower);
+				};
+			};
+			
 			function buyCursor() {
 				if (MC >= cursorCost) {
 					MC = MC - cursorCost;
