@@ -86,7 +86,7 @@
 	<div class="BUTTON">
 	<button onclick="saveGame();">Save Game</button>
 	</div>
-	<h2>Version 2.1</h2>
+	<h2>Version 2.2</h2>
 	<p>Bugfixes:</p>
 	<p>Bugfix Overhaul</p>
 	<body>		
@@ -227,7 +227,7 @@
 				if (MC >= cardCost) {
 					MC = MC - cardCost;
 					cards = cards + 1;
-					cardCost = Math.round(cardCost * 10);
+					cardCost = cardCost * 10;
 					
 					document.getElementById("MC").innerHTML = MC;
 					document.getElementById("cardcost").innerHTML = cardCost;
