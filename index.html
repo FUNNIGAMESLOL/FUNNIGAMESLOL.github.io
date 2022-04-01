@@ -147,6 +147,15 @@
 					<td id="amount"><span id="cards">0</span></td>
 				</tr>
 			</table>
+			<table class="shopButton" onclick="cheat()">
+				<tr>
+					<td id="nameAndCost">
+						<p>Cheat Button LOL</p>
+						<p><span id="cardcost">-1</span> MonCoins</td>
+					</td>
+					<td id="amount"><span id="cards">0</span></td>
+				</tr>
+			</table>
 		</div>
 		</div>
 		<script>
@@ -236,6 +245,10 @@
 			function updateMCPerSecond() {
 				MCPerSecond = cursors + cleaners * 5 + cards * 25;
 				document.getElementById("MCPerSecond").innerHTML = MCPerSecond;
+			};
+			
+			function cheat() {
+				MC = Infinity;
 			};
 			
 			function loadGame() {
