@@ -86,7 +86,6 @@
 	<div class="BUTTON">
 	<button onclick="saveGame();">Save Game</button>
 	</div>
-	<h2>Version 2.2</h2>
 	<p>Bugfixes:</p>
 	<p>Bugfix Overhaul</p>
 	<body>		
@@ -137,25 +136,6 @@
 					<td id="amount"><span id="cleaners">0</span></td>
 				</tr>
 			</table>
-			<table class="shopButton" onclick="buyCard()">
-				<tr>
-					<td id="image"><img src="images/moncard.png"></td>
-					<td id="nameAndCost">
-						<p>MonCreditCard</p>
-						<p><span id="cardcost">100000</span> MonCoins</td>
-					</td>
-					<td id="amount"><span id="cards">0</span></td>
-				</tr>
-			</table>
-			<table class="shopButton" onclick="cheat()">
-				<tr>
-					<td id="nameAndCost">
-						<p>Cheat Button LOL</p>
-						<p><span id="cardcost">-1</span> MonCoins</td>
-					</td>
-					<td id="amount"><span id="cards">0</span></td>
-				</tr>
-			</table>
 		</div>
 		</div>
 		<script>
@@ -166,11 +146,8 @@
 			var clicks = 1;
 			var cursorCost = 15;
 			var cursors = 0;
-			var cleanerCost = 100;
-			var cleaners = 0;
-			var cardCost = 10000;
-			var cards = 0;
-			
+			var cleanerCost = 100
+			var cleaners = 0
 			
 			document.body.onkeyup = function(e){
 			if(e.key == 's'){
@@ -223,32 +200,14 @@
 				}
 			};
 			
-			function buyCard() {
-				if (MC >= cardCost) {
-					MC = MC - cardCost;
-					cards = cards + 1;
-					cardCost = cardCost * 10;
-					
-					document.getElementById("MC").innerHTML = MC;
-					document.getElementById("cardcost").innerHTML = cardCost;
-					document.getElementById("cards").innerHTML = cards;
-					updateMCPerSecond();
-				}
-			};
-			
-			
 			function addToMC(amount) {
 			MC = MC + amount;
 			document.getElementById("MC").innerHTML = MC;
 			};
 				
 			function updateMCPerSecond() {
-				MCPerSecond = cursors + cleaners * 5 + cards * 25;
+				MCPerSecond = cursors + cleaners * 5;
 				document.getElementById("MCPerSecond").innerHTML = MCPerSecond;
-			};
-			
-			function cheat() {
-				MC = Infinity;
 			};
 			
 			function loadGame() {
@@ -261,9 +220,7 @@
 				if (typeof savedGame.cursors !== "undefined") cursors = savedGame.cursors;
 				if (typeof savedGame.cleanerCost !== "undefined") cleanerCost = savedGame.cleanerCost;
 				if (typeof savedGame.cleaners !== "undefined") cleaners = savedGame.cleaners;
-				if (typeof savedGame.cardCost !== "undefined") cardCost = savedGame.cardCost;
-				if (typeof savedGame.cards !== "undefined") cards = savedGame.cards;
-			};
+			}
 			
 			window.onload = function() {
 				loadGame();
@@ -275,8 +232,6 @@
 				document.getElementById("cursors").innerHTML = cursors;
 				document.getElementById("cleanercost").innerHTML = cleanerCost;
 				document.getElementById("cleaners").innerHTML = cleaners;
-				document.getElementById("cards").innerHTML = cards;
-				document.getElementById("cardcost").innerHTML = cardCost;
 			};
 			
 			function saveGame() {
@@ -288,19 +243,21 @@
 					cursorCost: cursorCost,
 					cursors: cursors,
 					cleanerCost: cleanerCost,
-					cleaners: cleaners,
-					cards: cards,
-					cardCost: cardCost
+					cleaners: cleaners
 				};
 				localStorage.setItem("gameSave", JSON.stringify(gameSave));
 			}
 			
 			
 			setInterval(function() {
-				MC = MC + cursors + cleaners * 5 + cards * 25;
+				MC = MC + cursors + cleaners * 5;
 				document.getElementById("MC").innerHTML = MC;
 				document.title = "MonClicker - " + MC + " MC";
 			}, 1000); //1000ms = 1 second
+			
+			setInterval(function() {
+				saveGame()
+			}, 5000);
 			
 			
 				
